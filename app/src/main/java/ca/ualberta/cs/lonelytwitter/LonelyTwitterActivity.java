@@ -27,6 +27,12 @@ public class LonelyTwitterActivity extends Activity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		Tweet tweet = new ImportantTweet("Blah");
+		tweet.setText("");
+
+		//generic types
+		ArrayList<Tweet> tweetList;
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
