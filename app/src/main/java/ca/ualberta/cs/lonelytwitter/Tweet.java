@@ -21,7 +21,7 @@ public abstract class Tweet extends Object implements Tweetable {
     }
 
     public String getText() {
-        return text;
+        return this.text;
     }
 
     public void setText(String text) throws TweetTooLongException {
@@ -33,7 +33,7 @@ public abstract class Tweet extends Object implements Tweetable {
     }
 
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     public void setDate(Date date) {
@@ -41,5 +41,10 @@ public abstract class Tweet extends Object implements Tweetable {
     }
 
     public abstract Boolean isImportant();
+
+    @Override
+    public String toString(){
+        return this.date.toString() + " | "  + this.text;
+    }
 
 }
