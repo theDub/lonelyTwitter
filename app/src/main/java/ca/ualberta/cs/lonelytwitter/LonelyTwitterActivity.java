@@ -13,8 +13,10 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +30,8 @@ public class LonelyTwitterActivity extends Activity {
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
+	private Button saveButton;
+	private Button clearButton;
 	private ArrayList<Tweet> tweets = new ArrayList<Tweet>();
 	private ArrayAdapter<Tweet> adapter;
 
@@ -38,10 +42,10 @@ public class LonelyTwitterActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		bodyText = (EditText) findViewById(R.id.body);
-		Button saveButton = (Button) findViewById(R.id.save);
-		Button clearButton = (Button) findViewById(R.id.clear);
-		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
+		this.bodyText = (EditText) findViewById(R.id.body);
+		this.saveButton = (Button) findViewById(R.id.save);
+		this.clearButton = (Button) findViewById(R.id.clear);
+		this.oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
@@ -63,6 +67,31 @@ public class LonelyTwitterActivity extends Activity {
 				saveInFile();
 			}
 		});
+
+		this.oldTweetsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent intent = new Intent(LonelyTwitterActivity.this, EditTweetActivity.class);
+				startActivity(intent);
+			}
+		});
+	}
+
+
+
+	public Button getClearButton(){
+		return this.clearButton;
+	}
+
+	public EditText getBodyText(){
+		return this.bodyText;
+	}
+
+	public Button getSaveButton(){
+		return this.saveButton;
+	}
+
+	public ListView getOldTweetsList(){
+		return this.oldTweetsList;
 	}
 
 	@Override
